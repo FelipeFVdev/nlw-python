@@ -2,3 +2,7 @@ venv
 schema.db
 **/__pychace__
 .pytest_cache
+# Python temp files
+__pycache__/
+*.py[cod]
+*$py.class
