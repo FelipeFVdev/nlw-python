@@ -1,6 +1,7 @@
 from src.model.config.base import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
+
 class Inscritos(Base):
     __tablename__ = "Inscritos"
 
@@ -8,4 +9,4 @@ class Inscritos(Base):
     nome = Column(String, nullable=False)
     email = Column(String, nullable=False)
     link = Column(String, nullable=True)
-    event_id = Column(Integer, ForeignKey("Eventos.id"))
+    evento_id = Column(Integer, ForeignKey("Eventos.id"))

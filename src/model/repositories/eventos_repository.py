@@ -1,6 +1,6 @@
-import re
 from src.model.config.connection import DBConnectionHandler
 from src.model.entities.eventos import Eventos
+
 
 class EventosRepository:
     def insert_event(self, event_name: str) -> None:
@@ -12,12 +12,11 @@ class EventosRepository:
             except Exception as exception:
                 db.session.rollback()
                 raise exception
-            
+
     def select_event(self, event_name: str) -> Eventos:
         with DBConnectionHandler() as db:
             data = (
-                db.session
-                .query(Eventos)
+                db.session.query(Eventos)
                 .filter(Eventos.nome == event_name)
                 .one_or_none()
             )
