@@ -1,23 +1,20 @@
-import pytest
-from src.model.repositories.subscribers_repository import SubscribersRepository
+from abc import ABC, abstractmethod
+from src.model.entities.inscritos import Inscritos
 
 
-@pytest.mark.skip("Insert in DB")
-def test_insert_subscriber():
-    subscriber_info = {
-        "nome": "meuNome",
-        "email": "meuEmail@gmail.com",
-        "evento_id": 1,
-    }
-    sub_repo = SubscribersRepository()
-    sub_repo.insert_subscriber(subscriber_info)
+class SubscribersRepositoryInterface(ABC):
+    @abstractmethod
+    def insert(self, subscriber_infos: dict) -> None:
+        pass
 
+    @abstractmethod
+    def select_subscriber(self, email: str, evento_id: int) -> Inscritos:
+        pass
 
-@pytest.mark.skip("Select in DB")
-def test_select_subscriber():
-    email = "meuEmail@gmail.com"
-    evento_id = 1
+    @abstractmethod
+    def select_subscribers_by_link(self, link: str, event_id: int) -> list:
+        pass
 
-    sub_repo = SubscribersRepository()
-    data = sub_repo.select_subscriber(email, evento_id)
-    print(data.nome)
+    @abstractmethod
+    def get_ranking(self, event_id: int) -> list:
+        pass
